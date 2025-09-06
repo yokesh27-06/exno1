@@ -85,6 +85,83 @@ df.fillna({'GENDER':'MALE','NAME':'SRI'})
 ```
 <img width="1047" height="852" alt="image" src="https://github.com/user-attachments/assets/0a903518-5a55-4745-8ec2-a240a5605ef1" />
 
+```
+dhinesh=pd.read_csv("SAMPLEIDS.csv")
+dhinesh
+```
+<img width="1047" height="863" alt="image" src="https://github.com/user-attachments/assets/665449fd-0f21-411b-af79-41806675c135" />
+
+```
+dhinesh.describe()
+```
+<img width="931" height="361" alt="image" src="https://github.com/user-attachments/assets/d01f1507-7a5e-464f-8f77-b423fdb20d09" />
+
+```
+dhinesh=pd.read_csv('iris.csv')
+dhinesh
+```
+<img width="657" height="508" alt="image" src="https://github.com/user-attachments/assets/522253f6-852a-40fc-98ee-b82e242de13a" />
+
+```
+dhinesh.describe()
+```
+<img width="588" height="362" alt="image" src="https://github.com/user-attachments/assets/cc26a91e-4aee-4e24-8432-6908f62f01dd" />
+
+```
+import seaborn as sns
+sns.boxplot(x='sepal_width',data=dhinesh)
+```
+<img width="665" height="571" alt="image" src="https://github.com/user-attachments/assets/a2eaa9a2-1f89-4282-a12a-47296fcb141d" />
+
+```
+q1=dhinesh.sepal_width.quantile(0.25)
+q3=dhinesh.sepal_width.quantile(0.75)
+iqr=q3-q1
+print(iqr)
+```
+<img width="123" height="55" alt="image" src="https://github.com/user-attachments/assets/1fd9b0c7-5680-41f1-86cc-491156812a8d" />
+
+```
+rid=dhinesh[((dhinesh.sepal_width<(q1-1.5*iqr)) | (dhinesh.sepal_width>(q3+1.5*iqr)))]
+rid['sepal_width']
+```
+<img width="202" height="256" alt="image" src="https://github.com/user-attachments/assets/279fce48-00d2-42e5-bf7d-45265cae9a94" />
+
+```
+delid=dhinesh[~((dhinesh.sepal_width<(q1-1.5*iqr)) | (dhinesh.sepal_width>(q3+1.5*iqr)))]
+delid
+```
+<img width="655" height="517" alt="image" src="https://github.com/user-attachments/assets/ddd4461d-6e6b-4bba-aeb7-1f1d42d55fde" />
+
+```
+sns.boxplot(x='sepal_width',data=delid)
+```
+<img width="677" height="580" alt="image" src="https://github.com/user-attachments/assets/b6e33d3e-dfd6-4394-861e-07f3f31e59e4" />
+
+```
+import numpy as np
+import scipy.stats as stats
+z=np.abs(stats.zscore(dhinesh['sepal_width']))
+z
+```
+<img width="653" height="653" alt="image" src="https://github.com/user-attachments/assets/c255af69-6b2e-4f78-8317-fc04593f1880" />
+
+```
+z1=z[z<3]
+z1
+```
+<img width="657" height="650" alt="image" src="https://github.com/user-attachments/assets/562e364e-5c47-4faf-bfbf-be1a665c7a96" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,4 +176,6 @@ df.fillna({'GENDER':'MALE','NAME':'SRI'})
 
 
 # Result
-          <<include your Result here>>
+Thus we have cleaned the data and removed the outliers by detection using IQR and Z-score method.
+
+
